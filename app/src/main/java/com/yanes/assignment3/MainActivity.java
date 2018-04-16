@@ -133,7 +133,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 builder.setTitle("Pick Your Widget");
 
 // add a list
-                String[] widget = {"Line", "Rectangle"};
+                String[] widget = {"Line", "Rectangle", "Check"};
                 builder.setItems(widget, new DialogInterface.OnClickListener() {
 
                     @Override
@@ -142,6 +142,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
                             case 0:type="Line";    break;
                             case 1:type="Rectangle";   break;
+                            case 2:type="Check";      break;
                         }
 
                     }
