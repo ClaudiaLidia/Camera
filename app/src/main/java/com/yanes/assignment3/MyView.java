@@ -51,6 +51,8 @@ public class MyView extends View {
         mrec.setColor(Color.RED);
         mrec.setStyle(Paint.Style.FILL);
 
+
+
         mPaint = new Paint();
         mPaint.setColor(Color.RED);
         mPaint.setStyle(Paint.Style.STROKE);
@@ -105,7 +107,9 @@ public class MyView extends View {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+        dpSize = MainActivity.thicknesses;
         type = MainActivity.type;
+        color = MainActivity.color;
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 xDown = event.getX();
