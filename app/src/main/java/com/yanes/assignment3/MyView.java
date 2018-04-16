@@ -25,6 +25,7 @@ public class MyView extends View {
     private int currentWidth;
     private int currentHeight;
     boolean touched = false;
+    private int dpSize;
 
     private String type;
 
@@ -110,7 +111,7 @@ public class MyView extends View {
                 touched = true;
                 break;
         }
-        po po1 = new po(xDown, yDown,xUp, yUp);
+        po po1 = new po(xDown, yDown,xUp, yUp,type, dpSize);
         posi.add(po1);
         invalidate();
         return true;
@@ -123,13 +124,15 @@ public class MyView extends View {
         private int dpSize;
         private  float xUp;
         private  float yUp;
+        private String type;
 
-        public po(float xDown, float yDown, float xUp, float yUp) {
+        public po(float xDown, float yDown, float xUp, float yUp, String type, int dpSize) {
             this.xDown = xDown;
             this.yDown = yDown;
             this.xUp = xUp;
             this.yUp = yUp;
             this.dpSize = dpSize;
+            this.type = type;
         }
 
 
