@@ -13,6 +13,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private static final int RESULT_LOAD_IMAGE= 1;
     private static final int CAMERA_REQUEST = 1888;
     private Button bUploadImage;
+    private com.yanes.assignment3.MyView mv;
     private Button btnAdd;
     private Button b;
     public static String type;
@@ -70,7 +71,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                         switch (which) {
 
                             case 0:type="Line";    break;
-                            case 1:type="Rectangle";       break;
+                            case 1:type="Rectangle";   break;
                         }
 
                     }
@@ -82,6 +83,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
                 break;
             case R.id.btn_delete:
+                mv.delete();
                 break;
 
 

@@ -88,6 +88,11 @@ public class MyView extends View {
         }
 
     }
+    public void delete(){
+        posi.removeAll(posi);
+        invalidate();
+    }
+
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         type = MainActivity.type;
