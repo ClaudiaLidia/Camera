@@ -71,8 +71,13 @@ public class MyView extends View {
         int dpSize = 10;
 
         int size= posi.size();
+
         for(int i=0;i<size;i++) {
             po ball = posi.get(i);
+            xDown = ball.xDown;
+            yDown = ball.yDown;
+            xUp = ball.xUp;
+            yUp = ball.yUp;
             float strokeWidth = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dpSize, dn);
 
             if (type == "Line") {
