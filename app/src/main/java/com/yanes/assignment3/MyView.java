@@ -19,7 +19,7 @@ import java.util.ArrayList;
 
 public class MyView extends View {
     private float xDown , yDown , xUp , yUp;
-    Paint mPaint;
+    Paint mPaint, mrec;
     DisplayMetrics dn;
     private int currentWidth;
     private int currentHeight;
@@ -41,6 +41,11 @@ public class MyView extends View {
         setup(context);
     }
     private void setup(Context context) {
+
+        mrec = new Paint();
+        mrec.setColor(Color.RED);
+        mrec.setStyle(Paint.Style.FILL);
+
         mPaint = new Paint();
         mPaint.setColor(Color.RED);
         mPaint.setStyle(Paint.Style.STROKE);
@@ -59,7 +64,15 @@ public class MyView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+        int dpSize = 10;
+
+        float strokeWidth = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dpSize, dn);
+
+
         canvas.drawLine(xDown, yDown, xUp, yUp, mPaint);
+        canvas.drawRect(xDown-(strokeWidth*10)/2, yDown-(strokeWidth*10)/2, xDown+(strokeWidth*10)/2, yDown+(strokeWidth*10)/2, mrec);    //rectangle
+
+
     }
     @Override
     public boolean onTouchEvent(MotionEvent event) {
