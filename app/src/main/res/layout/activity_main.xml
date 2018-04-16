@@ -76,7 +76,7 @@
         app:layout_constraintVertical_bias="0.371" />
 
     <com.yanes.assignment3.MyView
-        android:id="@+id/button"
+        android:id="@+id/myW"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"

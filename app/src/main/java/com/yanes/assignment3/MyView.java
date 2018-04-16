@@ -54,11 +54,13 @@ public class MyView extends View {
         mPaint = new Paint();
         mPaint.setColor(Color.RED);
         mPaint.setStyle(Paint.Style.STROKE);
+
         int dpSize = 10;
         dn = getResources().getDisplayMetrics();
         float strokeWidth = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dpSize, dn);
 
         mPaint.setStrokeWidth(strokeWidth);
+        mrec.setStrokeWidth(strokeWidth);
     }
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
@@ -69,7 +71,6 @@ public class MyView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        int dpSize = 10;
 
         int size= posi.size();
 
@@ -79,7 +80,12 @@ public class MyView extends View {
             yDown = ball.yDown;
             xUp = ball.xUp;
             yUp = ball.yUp;
+            type = ball.type;
+            dpSize= ball.dpSize;
             float strokeWidth = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dpSize, dn);
+
+            mPaint.setStrokeWidth(strokeWidth);
+            mrec.setStrokeWidth(strokeWidth*10);
 
             if (type == "Line") {
                 canvas.drawLine(xDown, yDown, xUp, yUp, mPaint);
@@ -90,9 +96,10 @@ public class MyView extends View {
 
     }
     public void delete(){
-        posi.removeAll(posi);
+       posi.removeAll(posi);
         invalidate();
     }
+    public void addB2() {}
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
