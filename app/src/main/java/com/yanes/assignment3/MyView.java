@@ -20,7 +20,8 @@ import java.util.ArrayList;
 
 public class MyView extends View {
     private float xDown , yDown , xUp , yUp;
-    Paint mPaint, mcheck, mrec;
+    Paint mPaint, mcheck, mrec, emogi, eyes, mouse;
+    ArrayList<em> emo;
     DisplayMetrics dn;
     private int currentWidth;
     private int currentHeight;
@@ -28,6 +29,7 @@ public class MyView extends View {
     private int dpSize;
     private int color;
     private String type;
+    private   int radius;
 
     ArrayList<po> posi= new ArrayList<>();
 
@@ -59,6 +61,18 @@ public class MyView extends View {
         mPaint.setColor(Color.RED);
         mPaint.setStyle(Paint.Style.STROKE);
 
+        emogi = new Paint();
+        emogi.setColor(Color.YELLOW);
+        emogi.setStyle(Paint.Style.FILL_AND_STROKE);
+
+        eyes = new Paint();
+        eyes.setColor(Color.BLACK);
+        eyes.setStyle(Paint.Style.FILL);
+
+        mouse = new Paint();
+        mouse.setColor(Color.RED);
+        mouse.setStyle(Paint.Style.STROKE);
+
         int dpSize = 10;
         dn = getResources().getDisplayMetrics();
         float strokeWidth = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dpSize, dn);
@@ -66,6 +80,8 @@ public class MyView extends View {
         mPaint.setStrokeWidth(strokeWidth);
         mcheck.setStrokeWidth(strokeWidth);
         mrec.setStrokeWidth(strokeWidth);
+
+        emo = new ArrayList<em>();
     }
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
@@ -77,44 +93,61 @@ public class MyView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        int size= posi.size();
+        int size = posi.size();
 
-        for(int i=0;i<size;i++) {
+        for (int i = 0; i < size; i++) {
             po ball = posi.get(i);
             xDown = ball.xDown;
             yDown = ball.yDown;
             xUp = ball.xUp;
             yUp = ball.yUp;
             type = ball.type;
-            dpSize= ball.dpSize;
+            dpSize = ball.dpSize;
             mPaint.setColor(ball.color);
             mrec.setColor(ball.color);
+            emogi.setColor(ball.color);
             mcheck.setColor(ball.color);
             float strokeWidth = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dpSize, dn);
 
             mPaint.setStrokeWidth(strokeWidth);
-            mrec.setStrokeWidth(strokeWidth*10);
+            mrec.setStrokeWidth(strokeWidth * 10);
             mcheck.setStrokeWidth(strokeWidth);
 
+            radius = dpSize * 10;
 
             if (type == "Line") {
                 canvas.drawLine(xDown, yDown, xUp, yUp, mPaint);
             } else if (type == "Rectangle") {
                 canvas.drawRect(xDown - (strokeWidth * 10), yDown - (strokeWidth * 10) / 2, xDown + (strokeWidth * 10), yDown + (strokeWidth * 10) / 2, mrec);    //rectangle
-            }else if (type == "Point") {
+            } else if (type == "Point") {
                 canvas.drawPoint(xDown, yDown, mPaint);
             } else if (type == "Check") {
-                canvas.drawLine(xDown+(strokeWidth)*10/9, yDown+(strokeWidth)*10/6, xDown +(strokeWidth)*10/2, yDown-(strokeWidth)*10/2 , mcheck);
-                canvas.drawLine(xDown -(strokeWidth)*10/6, yDown-(strokeWidth)*10/6, xDown+(strokeWidth)*10/9, yDown+(strokeWidth)*10/6, mcheck);
-            }
-        }
+                canvas.drawLine(xDown + (strokeWidth) * 10 / 9, yDown + (strokeWidth) * 10 / 6, xDown + (strokeWidth) * 10 / 2, yDown - (strokeWidth) * 10 / 2, mcheck);
+                canvas.drawLine(xDown - (strokeWidth) * 10 / 6, yDown - (strokeWidth) * 10 / 6, xDown + (strokeWidth) * 10 / 9, yDown + (strokeWidth) * 10 / 6, mcheck);
+            } else if (type == "Emo") {
+                int size1 = emo.size();
+                for (int ii = 0; ii < size1; ii++) {
+                    em e2 = emo.get(ii);
+                    canvas.drawCircle(xDown, yDown, 70, emogi);
+                    canvas.drawCircle(xDown - 65, yDown - 65, radius / 3, eyes);
+                    canvas.drawCircle(xDown + 65, yDown - 65, radius / 3, eyes);
+                    canvas.drawCircle(xDown, yDown, radius / 10, eyes);
+                    canvas.drawCircle(xDown, yDown + 75, radius / 5, mouse);
 
+
+                }
+            }
+
+        }
     }
     public void delete(){
        posi.removeAll(posi);
         invalidate();
     }
-    public void addB2() {}
+    public void addB2() {
+        em e1 = new em(100,10 );
+        emo.add(e1);
+    }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
@@ -160,5 +193,17 @@ public class MyView extends View {
         }
 
 
+    }
+    private class em{
+
+        private int dpSize1;
+        private int dpSize2;
+        em(int dpSize1, int dpSize2) {
+            float strokeWidth2 = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dpSize1, dn);
+            float strokeWidth3 = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dpSize2, dn);
+
+            emogi.setStrokeWidth(strokeWidth2);
+            mouse.setStrokeWidth(strokeWidth3);
+        }
     }
 }
