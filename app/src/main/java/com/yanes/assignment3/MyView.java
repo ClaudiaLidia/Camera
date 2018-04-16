@@ -28,6 +28,7 @@ public class MyView extends View {
 
     private String type;
 
+    ArrayList<po> posi= new ArrayList<>();
 
     public MyView() {
         super(null);
@@ -69,12 +70,16 @@ public class MyView extends View {
         super.onDraw(canvas);
         int dpSize = 10;
 
-        float strokeWidth = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dpSize, dn);
+        int size= posi.size();
+        for(int i=0;i<size;i++) {
+            po ball = posi.get(i);
+            float strokeWidth = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dpSize, dn);
 
-        if (type == "Line") {
-            canvas.drawLine(xDown, yDown, xUp, yUp, mPaint);
-        }else if(type == "Rectangle") {
-            canvas.drawRect(xDown - (strokeWidth * 10) , yDown - (strokeWidth * 10) / 2, xDown + (strokeWidth * 10) , yDown + (strokeWidth * 10) / 2, mrec);    //rectangle
+            if (type == "Line") {
+                canvas.drawLine(xDown, yDown, xUp, yUp, mPaint);
+            } else if (type == "Rectangle") {
+                canvas.drawRect(xDown - (strokeWidth * 10), yDown - (strokeWidth * 10) / 2, xDown + (strokeWidth * 10), yDown + (strokeWidth * 10) / 2, mrec);    //rectangle
+            }
         }
 
     }
@@ -95,8 +100,28 @@ public class MyView extends View {
                 touched = true;
                 break;
         }
-
+        po po1 = new po(xDown, yDown,xUp, yUp);
+        posi.add(po1);
         invalidate();
         return true;
+    }
+    private class po {
+
+
+        private  float xDown;
+        private  float  yDown;
+        private int dpSize;
+        private  float xUp;
+        private  float yUp;
+
+        public po(float xDown, float yDown, float xUp, float yUp) {
+            this.xDown = xDown;
+            this.yDown = yDown;
+            this.xUp = xUp;
+            this.yUp = yUp;
+            this.dpSize = dpSize;
+        }
+
+
     }
 }
