@@ -47,6 +47,13 @@ public class MainActivity extends Activity implements View.OnClickListener {
                         startActivityForResult(galleryIntent, RESULT_LOAD_IMAGE);
                     }
                 });
+                dialog.setButton2("Camera", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+                        startActivityForResult(cameraIntent, CAMERA_REQUEST);
+                    }
+                });
                 dialog.show();
                 break;
             case R.id.btn_add:
