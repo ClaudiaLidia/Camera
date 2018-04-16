@@ -142,8 +142,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
                             case 0:type="Line";    break;
                             case 1:type="Rectangle";   break;
-                            case 3:  type="Point";     break;
-                            case 2:type="Check";      break;
+                            case 2:  type="Point";     break;
+                            case 3:type="Check";      break;
                         }
 
                     }
