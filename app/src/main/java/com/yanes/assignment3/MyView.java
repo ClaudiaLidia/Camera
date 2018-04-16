@@ -13,6 +13,8 @@ import android.view.View;
 
 import java.util.ArrayList;
 
+import sun.applet.Main;
+
 /**
  * Created by claud on 4/15/2018.
  */
@@ -24,6 +26,8 @@ public class MyView extends View {
     private int currentWidth;
     private int currentHeight;
     boolean touched = false;
+
+    private String type;
 
 
     public MyView() {
@@ -68,14 +72,16 @@ public class MyView extends View {
 
         float strokeWidth = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dpSize, dn);
 
-
-        canvas.drawLine(xDown, yDown, xUp, yUp, mPaint);
-        canvas.drawRect(xDown-(strokeWidth*10)/2, yDown-(strokeWidth*10)/2, xDown+(strokeWidth*10)/2, yDown+(strokeWidth*10)/2, mrec);    //rectangle
-
+        if (type == "Line") {
+            canvas.drawLine(xDown, yDown, xUp, yUp, mPaint);
+        }else if(type == "Rectangle") {
+            canvas.drawRect(xDown - (strokeWidth * 10) / 2, yDown - (strokeWidth * 10) / 2, xDown + (strokeWidth * 10) / 2, yDown + (strokeWidth * 10) / 2, mrec);    //rectangle
+        }
 
     }
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+        type = MainActivity.type;
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 xDown = event.getX();

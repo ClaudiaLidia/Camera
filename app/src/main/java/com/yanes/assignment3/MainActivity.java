@@ -15,6 +15,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private Button bUploadImage;
     private Button btnAdd;
     private Button b;
+    public static String type;
     private AlertDialog dialog;
 
     @Override
@@ -57,6 +58,27 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 dialog.show();
                 break;
             case R.id.btn_add:
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle("Pick Your Widget");
+
+// add a list
+                String[] widget = {"Line", "Rectangle"};
+                builder.setItems(widget, new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch (which) {
+
+                            case 0:type="Line";    break;
+                            case 1:type="Rectangle";       break;
+                        }
+
+                    }
+                });
+
+                AlertDialog dialog = builder.create();
+                dialog.show();
+
 
                 break;
             case R.id.btn_delete:
