@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
@@ -21,6 +22,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private Button b;
     ImageView imageToUpload;
     public static String type;
+    public static int color;
     public static int thicknesses;
     private AlertDialog dialog;
     private Button btnSave;
@@ -101,6 +103,31 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 AlertDialog dialog2 = builder2.create();
 
                 dialog2.show();
+
+                AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
+                builder1.setTitle("Pick The Color of Your Widget");
+
+// add a list
+                String[] widget1 = {"Red", "Blue", "Green", "Yellow","Black"};
+                builder1.setItems(widget1, new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which1) {
+
+                        switch (which1) {
+
+                            case 0:color= Color.RED;   break;
+                            case 1:color= Color.BLUE;   break;
+                            case 2:color=Color.GREEN; break;
+                            case 3:color=Color.YELLOW; break;
+                            case 4:color=Color.BLACK;  break;
+
+                        }
+                    }
+                });
+                AlertDialog dialog1 = builder1.create();
+
+                dialog1.show();
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setTitle("Pick Your Widget");

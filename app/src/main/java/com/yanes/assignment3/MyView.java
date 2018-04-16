@@ -26,7 +26,7 @@ public class MyView extends View {
     private int currentHeight;
     boolean touched = false;
     private int dpSize;
-
+    private int color;
     private String type;
 
     ArrayList<po> posi= new ArrayList<>();
@@ -82,6 +82,8 @@ public class MyView extends View {
             yUp = ball.yUp;
             type = ball.type;
             dpSize= ball.dpSize;
+            mPaint.setColor(ball.color);
+            mrec.setColor(ball.color);
             float strokeWidth = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dpSize, dn);
 
             mPaint.setStrokeWidth(strokeWidth);
@@ -118,7 +120,7 @@ public class MyView extends View {
                 touched = true;
                 break;
         }
-        po po1 = new po(xDown, yDown,xUp, yUp,type, dpSize);
+        po po1 = new po(xDown, yDown,xUp, yUp,type, color, dpSize);
         posi.add(po1);
         invalidate();
         return true;
@@ -132,13 +134,15 @@ public class MyView extends View {
         private  float xUp;
         private  float yUp;
         private String type;
+        private  int color;
 
-        public po(float xDown, float yDown, float xUp, float yUp, String type, int dpSize) {
+        public po(float xDown, float yDown, float xUp, float yUp, String type, int color, int dpSize) {
             this.xDown = xDown;
             this.yDown = yDown;
             this.xUp = xUp;
             this.yUp = yUp;
             this.dpSize = dpSize;
+            this.color = color;
             this.type = type;
         }
 
