@@ -20,7 +20,7 @@ import java.util.ArrayList;
 
 public class MyView extends View {
     private float xDown , yDown , xUp , yUp;
-    Paint mPaint, mrec;
+    Paint mPaint, mcheck, mrec;
     DisplayMetrics dn;
     private int currentWidth;
     private int currentHeight;
@@ -51,7 +51,9 @@ public class MyView extends View {
         mrec.setColor(Color.RED);
         mrec.setStyle(Paint.Style.FILL);
 
-
+        mcheck = new Paint();
+        mcheck.setColor(Color.GREEN);
+        mcheck.setStyle(Paint.Style.STROKE);
 
         mPaint = new Paint();
         mPaint.setColor(Color.RED);
@@ -62,6 +64,7 @@ public class MyView extends View {
         float strokeWidth = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dpSize, dn);
 
         mPaint.setStrokeWidth(strokeWidth);
+        mcheck.setStrokeWidth(strokeWidth);
         mrec.setStrokeWidth(strokeWidth);
     }
     @Override
@@ -86,15 +89,21 @@ public class MyView extends View {
             dpSize= ball.dpSize;
             mPaint.setColor(ball.color);
             mrec.setColor(ball.color);
+            mcheck.setColor(ball.color);
             float strokeWidth = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dpSize, dn);
 
             mPaint.setStrokeWidth(strokeWidth);
             mrec.setStrokeWidth(strokeWidth*10);
+            mcheck.setStrokeWidth(strokeWidth);
+
 
             if (type == "Line") {
                 canvas.drawLine(xDown, yDown, xUp, yUp, mPaint);
             } else if (type == "Rectangle") {
                 canvas.drawRect(xDown - (strokeWidth * 10), yDown - (strokeWidth * 10) / 2, xDown + (strokeWidth * 10), yDown + (strokeWidth * 10) / 2, mrec);    //rectangle
+            }else if (type == "Check") {
+                canvas.drawLine(xDown+(strokeWidth)*10/9, yDown+(strokeWidth)*10/6, xDown +(strokeWidth)*10/2, yDown-(strokeWidth)*10/2 , mcheck);
+                canvas.drawLine(xDown -(strokeWidth)*10/6, yDown-(strokeWidth)*10/6, xDown+(strokeWidth)*10/9, yDown+(strokeWidth)*10/6, mcheck);
             }
         }
 
@@ -130,8 +139,6 @@ public class MyView extends View {
         return true;
     }
     private class po {
-
-
         private  float xDown;
         private  float  yDown;
         private int dpSize;
