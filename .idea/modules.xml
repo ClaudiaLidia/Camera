@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Assignment3.iml" filepath="$PROJECT_DIR$/Assignment3.iml" />
+      <module fileurl="file://C:\Claudia y Lidia\University\2018 Spring\Camera\a\Assignment3.iml" filepath="C:\Claudia y Lidia\University\2018 Spring\Camera\a\Assignment3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/a.iml" filepath="$PROJECT_DIR$/a.iml" />
       <module fileurl="file://C:\Claudia y Lidia\Universidad\2018 Spring\Camera\Assignment3\a.iml" filepath="C:\Claudia y Lidia\Universidad\2018 Spring\Camera\Assignment3\a.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://C:\Claudia y Lidia\Universidad\2018 Spring\Camera\Assignment3\app\app.iml" filepath="C:\Claudia y Lidia\Universidad\2018 Spring\Camera\Assignment3\app\app.iml" />

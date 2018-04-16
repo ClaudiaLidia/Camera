@@ -61,7 +61,7 @@ public class MyView extends View {
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-        currentWidth = w;
+        currentWidth = w ;
         currentHeight = h;
     }
     @Override
