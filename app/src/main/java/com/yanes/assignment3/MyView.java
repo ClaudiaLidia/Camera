@@ -13,7 +13,6 @@ import android.view.View;
 
 import java.util.ArrayList;
 
-import sun.applet.Main;
 
 /**
  * Created by claud on 4/15/2018.
@@ -75,7 +74,7 @@ public class MyView extends View {
         if (type == "Line") {
             canvas.drawLine(xDown, yDown, xUp, yUp, mPaint);
         }else if(type == "Rectangle") {
-            canvas.drawRect(xDown - (strokeWidth * 10) / 2, yDown - (strokeWidth * 10) / 2, xDown + (strokeWidth * 10) / 2, yDown + (strokeWidth * 10) / 2, mrec);    //rectangle
+            canvas.drawRect(xDown - (strokeWidth * 10) , yDown - (strokeWidth * 10) / 2, xDown + (strokeWidth * 10) , yDown + (strokeWidth * 10) / 2, mrec);    //rectangle
         }
 
     }
