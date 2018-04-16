@@ -114,6 +114,17 @@ public class MyView extends View {
             mcheck.setStrokeWidth(strokeWidth);
 
             radius = dpSize * 10;
+            if(ball.color== Color.BLACK){
+                eyes.setColor(Color.WHITE);
+                mouse.setColor(Color.RED);
+            }else if(ball.color==Color.RED){
+                mouse.setColor(Color.BLACK);
+                eyes.setColor(Color.BLACK);
+            }
+            else{
+                eyes.setColor(Color.BLACK);
+                mouse.setColor(Color.RED);
+            }
 
             if (type == "Line") {
                 canvas.drawLine(xDown, yDown, xUp, yUp, mPaint);
