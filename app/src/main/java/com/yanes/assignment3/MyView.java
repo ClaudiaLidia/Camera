@@ -149,6 +149,9 @@ public class MyView extends View {
 
 
                 }
+            }else if(type == "X"){
+                canvas.drawLine(xDown-(strokeWidth)*10/2, yDown+(strokeWidth)*10/2, xDown +(strokeWidth)*10/2, yDown-(strokeWidth)*10/2 , mcheck);
+                canvas.drawLine(xDown-(strokeWidth)*10/2, yDown-(strokeWidth)*10/2, xDown+(strokeWidth)*10/2, yDown+(strokeWidth)*10/2, mcheck);
             }
 
         }
