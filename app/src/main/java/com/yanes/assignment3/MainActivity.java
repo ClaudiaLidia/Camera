@@ -24,6 +24,17 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+/***
+ * Claudia y Lidia
+ * Features:
+ * 1.Points. This feature lets the users make points of different colors and thicknesses. It uses the drawPoint's method which needs two float points and a Paint.
+ * 2.Check sign. This feature lets the users make a check sign of different colors and thicknesses. It uses two drawLine's methods which need four float points and a Paint.
+ * 3.Ovals. This feature lets the users make ovals of different colors and thicknesses. It uses a drawOval's methods which need four float points and a Paint.
+ * 4.Emoticons.This feature lets the users make amazed emoticons of different colors and thicknesses. It uses three different Paints: one for the mouse, one for both eyes and nose, and one for the face. It uses
+ * five drawCircle's methods which need three float numbers and a Paint. We also create an emoticon class.
+ * 5.X.This feature lets the users make X sign of different colors and thicknesses. It uses two drawLine's methods which need four float points and a Paint.
+ *
+ */
 public class MainActivity extends Activity implements View.OnClickListener {
     private static final int RESULT_LOAD_IMAGE= 1;
     private static final int CAMERA_REQUEST = 1888;
@@ -41,7 +52,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private Button btnSave;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+   protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         init();
@@ -187,7 +198,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 builder.setTitle("Pick Your Widget");
 
 // add a list
-                String[] widget = {"Line", "Rectangle", "Point", "Check", "Emo","Oval","X" };
+                String[] widget = {"Line", "Rectangle", "Point", "Check", "Emoticon","Oval","X" };
                 builder.setItems(widget, new DialogInterface.OnClickListener() {
 
                     @Override
@@ -198,7 +209,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                             case 1:type="Rectangle";   break;
                             case 2:  type="Point";     break;
                             case 3:type="Check";      break;
-                            case 4:type="Emo";      break;
+                            case 4:type="Emoticon";      break;
                             case 5:  type="Oval";   break;
                             case 6:type="X";      break;
                         }

@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 
 /**
- * Created by claud on 4/15/2018.
+ * Claudia y Lidia
  */
 
 public class MyView extends View {
@@ -144,7 +144,7 @@ public class MyView extends View {
             else if (type == "Oval") {
                 canvas.drawOval(xDown, yDown, xUp, yUp, mPaint);
             }// four feature, we can make amazed emoticons of different colors and thicknesses
-            else if (type == "Emo") {
+            else if (type == "Emoticon") {
                 int size1 = emo.size();
                 for (int ii = 0; ii < size1; ii++) {
                     em e2 = emo.get(ii);
