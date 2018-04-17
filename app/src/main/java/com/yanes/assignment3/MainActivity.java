@@ -4,12 +4,21 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Matrix;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 public class MainActivity extends Activity implements View.OnClickListener {
     private static final int RESULT_LOAD_IMAGE= 1;
@@ -51,11 +60,52 @@ public class MainActivity extends Activity implements View.OnClickListener {
         my =(com.yanes.assignment3.MyView) findViewById(R.id.myW);
         btnSave= (Button)findViewById(R.id.btn_save);
     }
+    public static Bitmap viewToBitmap(View view, View my, int width, int height, int myWidth, int myHeight){
+        Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+        Bitmap bitmap1 = Bitmap.createBitmap(myWidth, myHeight, Bitmap.Config.ARGB_8888);
+        Bitmap bu = null;
+        bu = overlay(bitmap, bitmap1);
+        Canvas canvas1 = new Canvas(bu);
+
+        view.draw(canvas1);
+        my.draw(canvas1);
+
+        return bu;
+    }
+    private static Bitmap overlay(Bitmap bmp1, Bitmap bmp2) {
+        Bitmap bmOverlay = Bitmap.createBitmap(bmp1.getWidth(), bmp1.getHeight(), bmp1.getConfig());
+        Canvas canvas = new Canvas(bmOverlay);
+        canvas.drawBitmap(bmp1, new Matrix(), null);
+        canvas.drawBitmap(bmp2, new Matrix(), null);
+        return bmOverlay;
+    }
 
     @Override
     public void onClick(View view) {
         int id = view.getId();
         switch (id) {
+            case R.id.btn_save:
+                dialog= new AlertDialog.Builder(this).create();
+                dialog.setTitle("Save image");
+                dialog.setMessage("You sure to save your image?");
+                dialog.setButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int which) {
+                        try {
+                            startSave();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+                dialog.setButton2("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialog.dismiss();
+                    }
+                });
+                dialog.show();
+                break;
 
             case R.id.bUploadImage:
                 dialog= new AlertDialog.Builder(this).create();
@@ -160,5 +210,25 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
 
         }
+    }
+    public void startSave() throws IOException {
+        FileOutputStream outStream = null;
+        File sdCard = Environment.getExternalStorageDirectory();
+        File dir = new File(sdCard.getAbsolutePath() + "/camtest");
+        dir.mkdirs();
+        String fileName = String.format("%d.jpg", System.currentTimeMillis());
+        File outFile = new File(dir, fileName);
+        outStream = new FileOutputStream(outFile);
+        Bitmap bitmap= viewToBitmap(imageView, my, imageView.getWidth(), imageView.getHeight(), my.getWidth(), my.getHeight());
+
+        bitmap.compress(Bitmap.CompressFormat.JPEG,  100, outStream);
+        outStream.flush();
+        outStream.close();
+        refreshGallery(outFile);
+    }
+    public void refreshGallery(File file){
+        Intent intent= new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+        intent.setData(Uri.fromFile(file));
+        sendBroadcast(intent);
     }
 }
