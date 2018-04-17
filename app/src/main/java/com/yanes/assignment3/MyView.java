@@ -101,7 +101,9 @@ public class MyView extends View {
                 canvas.drawLine(xDown, yDown, xUp, yUp, mPaint);
             } else if (type == "Rectangle") {
                 canvas.drawRect(xDown - (strokeWidth * 10), yDown - (strokeWidth * 10) / 2, xDown + (strokeWidth * 10), yDown + (strokeWidth * 10) / 2, mrec);    //rectangle
-            }else if (type == "Check") {
+            }else if (type == "Point") {
+                canvas.drawPoint(xDown, yDown, mPaint);
+            } else if (type == "Check") {
                 canvas.drawLine(xDown+(strokeWidth)*10/9, yDown+(strokeWidth)*10/6, xDown +(strokeWidth)*10/2, yDown-(strokeWidth)*10/2 , mcheck);
                 canvas.drawLine(xDown -(strokeWidth)*10/6, yDown-(strokeWidth)*10/6, xDown+(strokeWidth)*10/9, yDown+(strokeWidth)*10/6, mcheck);
             }
