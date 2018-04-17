@@ -135,7 +135,9 @@ public class MyView extends View {
             } else if (type == "Check") {
                 canvas.drawLine(xDown + (strokeWidth) * 10 / 9, yDown + (strokeWidth) * 10 / 6, xDown + (strokeWidth) * 10 / 2, yDown - (strokeWidth) * 10 / 2, mcheck);
                 canvas.drawLine(xDown - (strokeWidth) * 10 / 6, yDown - (strokeWidth) * 10 / 6, xDown + (strokeWidth) * 10 / 9, yDown + (strokeWidth) * 10 / 6, mcheck);
-            } else if (type == "Emo") {
+            } else if (type == "Oval") {
+                canvas.drawOval(xDown, yDown, xUp, yUp, mPaint);
+            }else if (type == "Emo") {
                 int size1 = emo.size();
                 for (int ii = 0; ii < size1; ii++) {
                     em e2 = emo.get(ii);
